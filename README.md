@@ -9,7 +9,7 @@ Provides a means to program a Lovelace button to control any binary entity (ligh
 This will also work for fans and dimmable lights that you would only ever like to switch on & off with a single speed or brightness setting (set outside the configuration for this plugin).
 And it also supports locks that have the states locked/unlocked/locking/unlocking.
 
-#Installation
+# Installation
 
 The easiest way to install this is to use the HACS install it as a custom repository.
 
