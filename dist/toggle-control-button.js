@@ -40,10 +40,6 @@ class CustomToggleButton extends LitElement {
 
     static get properties() {
         return {
-            hass: {
-                type: Object,
-                observer: 'hassChanged'
-            },
             hass: Object,
             _config: Object,
             _stateObj: Object,
@@ -104,10 +100,15 @@ class CustomToggleButton extends LitElement {
         this._config = { ...this._config, ...config };
     }
 
-    hassChanged(hass) {
+    updated(changedProperties) {
+		if (changedProperties.has("hass")) {
+			this.hassChanged();
+		}
+	}
 
+    hassChanged() {
         const config = this._config;
-        const stateObj = hass.states[config.entity];
+        const stateObj = this.hass.states[config.entity];
         const custTheme = config.customTheme;
         const buttonWidth = config.width;
         const buttonHeight = config.height;
