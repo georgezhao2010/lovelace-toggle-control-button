@@ -190,75 +190,61 @@ class CustomToggleButton extends LitElement {
         let unavailname = 'unavailable';
 
         if (state == 'off') {
-            this.setProperties({
-            _stateObj: stateObj,
-            _buttonState: state,
-            _buttonName: state,
-            _width: buttonwidth,
-            _height: buttonheight,
-            _buttonColor: color,
-            _buttonText: offtext,
-            });
+            this._stateObj = stateObj;
+            this._buttonState = state;
+            this._buttonName = state;
+            this._width = buttonwidth;
+            this._height = buttonheight;
+            this._buttonColor = color;
+            this._buttonText = offtext;
         } else if (state == 'on') {
-            this.setProperties({
-            _stateObj: stateObj,
-            _buttonState: state,
-            _width: buttonwidth,
-            _height: buttonheight,
-            _buttonName: state,
-            _buttonColor: color,
-            _buttonText: ontext,
-            });
+            this._stateObj = stateObj;
+            this._buttonState = state;
+            this._width = buttonwidth;
+            this._height = buttonheight;
+            this._buttonName = state;
+            this._buttonColor = color;
+            this._buttonText = ontext;
         } else if (state == 'locked') {
-            this.setProperties({
-            _stateObj: stateObj,
-            _buttonState: state,
-            _width: buttonwidth,
-            _height: buttonheight,
-            _buttonName: state,
-            _buttonColor: color,
-            _buttonText: lockedtext,
-            });
+            this._stateObj = stateObj;
+            this._buttonState = state;
+            this._width = buttonwidth;
+            this._height = buttonheight;
+            this._buttonName = state;
+            this._buttonColor = color;
+            this._buttonText = lockedtext;
         } else if (state == 'unlocked') {
-            this.setProperties({
-            _stateObj: stateObj,
-            _buttonState: state,
-            _width: buttonwidth,
-            _height: buttonheight,
-            _buttonName: state,
-            _buttonColor: color,
-            _buttonText: unlockedtext,
-            });
+            this._stateObj = stateObj;
+            this._buttonState = state;
+            this._width = buttonwidth;
+            this._height = buttonheight;
+            this._buttonName = state;
+            this._buttonColor = color;
+            this._buttonText = unlockedtext;
         } else if (state == 'locking') {
-            this.setProperties({
-            _stateObj: stateObj,
-            _buttonState: state,
-            _width: buttonwidth,
-            _height: buttonheight,
-            _buttonName: state,
-            _buttonColor: color,
-            _buttonText: lockingtext,
-            });
+            this._stateObj = stateObj;
+            this._buttonState = state;
+            this._width = buttonwidth;
+            this._height = buttonheight;
+            this._buttonName = state;
+            this._buttonColor = color;
+            this._buttonText = lockingtext;
         } else if (state == 'unlocking') {
-            this.setProperties({
-            _stateObj: stateObj,
-            _buttonState: state,
-            _width: buttonwidth,
-            _height: buttonheight,
-            _buttonName: state,
-            _buttonColor: color,
-            _buttonText: unlockingtext,
-            });
+            this._stateObj = stateObj;
+            this._buttonState = state;
+            this._width = buttonwidth;
+            this._height = buttonheight;
+            this._buttonName = state;
+            this._buttonColor = color;
+            this.buttonText = unlockingtext;
         } else {
-            this.setProperties({
-            _stateObj: stateObj,
-            _buttonState: state,
-            _buttonName: unavailname,
-            _width: buttonwidth,
-            _height: buttonheight,
-            _buttonColor: color,
-            _buttonText: unavailtext,
-            });
+            this._stateObj = stateObj;
+            this._buttonState = state;
+            this._buttonName = unavailname;
+            this._width = buttonwidth;
+            this._heigh = buttonheight;
+            this._buttonColor = color;
+            this._buttonText = unavailtext;
         }
     }
 
