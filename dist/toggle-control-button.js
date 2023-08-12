@@ -11,65 +11,10 @@ const html = LitElement.prototype.html;
 const css = LitElement.prototype.css;
 
 class CustomToggleButton extends LitElement {
-
-    static get template() {
-        return Polymer.html`
-        <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
-        <style>
-            :host {
-                line-height: inherit;
-            }
-            .switch {
-                margin-left: 2px;
-                margin-right: 2px;
-                background-color: #759aaa;
-                border: 1px solid lightgrey;
-                border-radius: 4px;
-                font-size: 10px !important;
-                color: inherit;
-                text-align: center;
-                float: right !important;
-                padding: 1px;
-                cursor: pointer;
-            }
-        </style>
-        <hui-generic-entity-row hass="[[hass]]" config="[[_config]]">
-            <div class='horizontal justified layout' on-click="stopPropagation">
-                <button
-                    class='switch'
-                    style='[[_buttonColor]];min-width:[[_width]];max-width:[[_width]];height:[[_height]]'
-                    toggles name='[[_buttonName]]'
-                    on-click='setState'>
-                        [[_buttonText]]
-                </button>
-            </div>
-        </hui-generic-entity-row>
-        `;
-    }
-
-    static get properties() {
-        return {
-            hass: {
-                type: Object,
-                observer: 'hassChanged'
-            },
-            hass: Object,
-            _config: Object,
-            _stateObj: Object,
-            _width: String,
-            _height: String,
-            _buttonColor: String,
-            _buttonText: String,
-            _buttonName: String,
-            _buttonState: Boolean,
-            }
-        }
-
-    setConfig(config) {
-        this._config = config;
-
-        this._config = {
-            customTheme: false,
+    constructor() {
+		super();
+		this._config = {
+			customTheme: false,
             width: '30px',
             height: '30px',
             isOnColor: '#43A047',
@@ -90,9 +35,73 @@ class CustomToggleButton extends LitElement {
             customLockedText: 'UNLOCK',
             customUnlockingText: 'UNLOCKING',
             customLockingText: 'LOCKING',
+		};
+	}
 
-            ...config
-        };
+    static get properties() {
+        return {
+            hass: {
+                type: Object,
+                observer: 'hassChanged'
+            },
+            hass: Object,
+            _config: Object,
+            _stateObj: Object,
+            _width: String,
+            _height: String,
+            _buttonColor: String,
+            _buttonText: String,
+            _buttonName: String,
+            _buttonState: Boolean,
+        }
+    }
+
+    static get styles() {
+		return css`
+			:host {
+				line-height: inherit;
+			}
+			.box {
+				display: flex;
+				flex-direction: row;
+			}
+			.switch {
+                margin-left: 2px;
+                margin-right: 2px;
+                background-color: #759aaa;
+                border: 1px solid lightgrey;
+                border-radius: 4px;
+                font-size: 10px !important;
+                color: inherit;
+                text-align: center;
+                float: right !important;
+                padding: 1px;
+                cursor: pointer;
+			}
+		`;
+	}
+
+	render() {
+		return html`
+			<hui-generic-entity-row .hass="${this.hass}" .config="${this._config}">
+				<div id='button-container' class='box'>
+					<button
+						class='switch'
+						style='${this._buttonColor};min-width:${this._width};max-width:${this._width};height:${this._height}'
+						toggles name="${this._buttonName}"
+						@click=${this.setState}>${this._buttonText}</button>
+				</div>
+			</hui-generic-entity-row>
+		`;
+	}
+
+    firstUpdated() {
+		super.firstUpdated();
+		this.shadowRoot.getElementById('button-container').addEventListener('click', (ev) => ev.stopPropagation());
+	}
+
+    setConfig(config) {
+        this._config = { ...this._config, ...config };
     }
 
     hassChanged(hass) {
@@ -250,11 +259,6 @@ class CustomToggleButton extends LitElement {
             _buttonText: unavailtext,
             });
         }
-    }
-
-
-    stopPropagation(e) {
-        e.stopPropagation();
     }
 
     setState(e) {
