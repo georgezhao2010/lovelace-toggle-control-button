@@ -6,7 +6,11 @@ window.customCards.push({
   preview: false,
 });
 
-class CustomToggleButton extends Polymer.Element {
+const LitElement = customElements.get("ha-panel-lovelace") ? Object.getPrototypeOf(customElements.get("ha-panel-lovelace")) : Object.getPrototypeOf(customElements.get("hc-lovelace"));
+const html = LitElement.prototype.html;
+const css = LitElement.prototype.css;
+
+class CustomToggleButton extends LitElement {
 
     static get template() {
         return Polymer.html`
@@ -49,6 +53,7 @@ class CustomToggleButton extends Polymer.Element {
                 type: Object,
                 observer: 'hassChanged'
             },
+            hass: Object,
             _config: Object,
             _stateObj: Object,
             _width: String,
